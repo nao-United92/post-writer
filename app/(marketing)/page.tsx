@@ -8,8 +8,8 @@ export default function IndexPage() {
           <Link href={'/'}>Xをフォローする</Link>
           <h1>Post Writer</h1>
           <p>
-            このアプリケーションはNext.js
-            AppRouterで作られたものです。ユーザーは自由に投稿をポストすることができます。
+            このアプリケーションはNext.jsのAppRouterで作られたものです。
+            ユーザーは自由に投稿をポストすることができます。
           </p>
         </div>
       </section>
