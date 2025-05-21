@@ -17,7 +17,7 @@ export default function MainNav() {
           href={'#feature'}
           className="text-lg sm:text-sm font-medium hover:text-foreground/80"
         >
-          ブログ
+          特徴
         </Link>
       </nav>
     </div>
