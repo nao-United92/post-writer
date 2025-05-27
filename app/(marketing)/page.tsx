@@ -54,7 +54,7 @@ export default function IndexPage() {
         </div>
         <div className='mx-auto grid sm:grid-cols-2 md:grid-cols-3 gap-4'>
           <div className="bg-background border p-2 rounded-lg">
-            <div>
+            <div className='flex flex-col justify-between p-6'>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="45"
