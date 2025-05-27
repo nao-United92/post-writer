@@ -52,7 +52,7 @@ export default function IndexPage() {
             このプロジェクトはモダンな技術スタックを使って作られたWebアプリケーションです。Next.jsAppRouterやcontentLayerを利用してマークダウン形式でブログ投稿ができます。
           </p>
         </div>
-        <div>
+        <div className='mx-auto grid sm:grid-cols-2 md:grid-cols-3 gap-4'>
           <div className="bg-background border p-2 rounded-lg">
             <div>
               <svg
