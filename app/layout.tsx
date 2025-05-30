@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   keywords: ['Next.js', 'React', 'TailwindCSS', 'shadcn/ui'],
   authors: [
     {
-      name: 'nao',
+      name: 'nao-United92',
       url: siteConfig.url,
     },
   ],
