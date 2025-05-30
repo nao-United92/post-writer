@@ -11,7 +11,8 @@ export const metadata: Metadata = {
     default: siteConfig.name,
     template: `%s | ${siteConfig.name}`,
   },
-  description: siteConfig.description
+  description: siteConfig.description,
+  keywords: ["Next.js", "React", "TailwindCSS", "shadcn/ui"],
 };
 
 export default function RootLayout({
