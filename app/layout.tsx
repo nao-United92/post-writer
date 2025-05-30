@@ -19,6 +19,14 @@ export const metadata: Metadata = {
       url: siteConfig.url,
     },
   ],
+  openGraph: {
+    type: 'website',
+    locale: 'ja',
+    url: siteConfig.url,
+    title: siteConfig.name,
+    description: siteConfig.description,
+    siteName: siteConfig.name,
+  },
 };
 
 export default function RootLayout({
