@@ -12,7 +12,13 @@ export const metadata: Metadata = {
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
-  keywords: ["Next.js", "React", "TailwindCSS", "shadcn/ui"],
+  keywords: ['Next.js', 'React', 'TailwindCSS', 'shadcn/ui'],
+  authors: [
+    {
+      name: 'nao',
+      url: siteConfig.url,
+    },
+  ],
 };
 
 export default function RootLayout({
