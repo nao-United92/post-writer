@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { format, formatData } from 'date-fns';
 import Link from 'next/link';
 
 export default function BlogPage() {
@@ -20,14 +21,22 @@ export default function BlogPage() {
       {posts.map((post) => (
         <article key={post._id}>
           {post.image && (
-            <Image src={post.image} alt={post.title} width={804} height={452} className='rounded-md border bg-muted'/>
+            <Image
+              src={post.image}
+              alt={post.title}
+              width={804}
+              height={452}
+              className="rounded-md border bg-muted"
+            />
           )}
           <h2 className="text-2xl font-extrabold">{post.title}</h2>
           {post.description && (
             <p className="text-muted-foreground">{post.description}</p>
           )}
           {post.date && (
-            <p className="text-sm text-muted-foreground">{post.date}</p>
+            <p className="text-sm text-muted-foreground">
+              {format(post.date, 'yyyy/MM/dd')}
+            </p>
           )}
         </article>
       ))}
