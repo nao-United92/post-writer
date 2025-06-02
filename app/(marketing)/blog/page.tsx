@@ -20,7 +20,7 @@ export default function BlogPage() {
       {posts.map((post) => (
         <article key={post._id}>
           {post.image && (
-            <Image src={post.image} alt={post.title} width={804} height={452} />
+            <Image src={post.image} alt={post.title} width={804} height={452} className='rounded-md border bg-muted'/>
           )}
           <h2 className="text-2xl font-extrabold">{post.title}</h2>
           {post.description && (
