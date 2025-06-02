@@ -18,9 +18,9 @@ export default function BlogPage() {
         </div>
       </div>
       <hr className="my-8" />
-      {posts.map((post) => (
-        <article key={post._id}>
-          {post.image && (
+      <div className='grid sm:grid-cols-2 gap-10'>
+        {posts.map((post) => (
+          <article key={post._id} className="relative flex flex-col space-y-2">
             <Image
               src={post.image}
               alt={post.title}
@@ -28,18 +28,17 @@ export default function BlogPage() {
               height={452}
               className="rounded-md border bg-muted"
             />
-          )}
-          <h2 className="text-2xl font-extrabold">{post.title}</h2>
-          {post.description && (
+            <h2 className="text-2xl font-extrabold">{post.title}</h2>
             <p className="text-muted-foreground">{post.description}</p>
-          )}
-          {post.date && (
             <p className="text-sm text-muted-foreground">
               {format(post.date, 'yyyy/MM/dd')}
             </p>
-          )}
-        </article>
-      ))}
+            <Link href={post.slug} className="absolute inset-0">
+              記事を見る
+            </Link>
+          </article>
+        ))}
+      </div>
     </div>
   );
 }
