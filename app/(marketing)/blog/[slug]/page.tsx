@@ -1,3 +1,4 @@
+import Mdx from '@/components/mdx-component';
 import { buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { format } from 'date-fns';
@@ -37,10 +38,7 @@ export default function PostPage({ params }: { params: { slug: string } }) {
           className="my-8 border rounded-md bg-muted"
         />
       )}
-      <div
-        className="[&>*]:mb-3 [&>*:last-child]:mb-0"
-        dangerouslySetInnerHTML={{ __html: post.body.html }}
-      />
+      <Mdx code={post.body.code} />
       <hr className="mt-12" />
       <div className="py-6 text-center lg:py-10">
         <Link
