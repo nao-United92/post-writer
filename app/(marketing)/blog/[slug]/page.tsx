@@ -25,6 +25,15 @@ export default function PostPage({ params }: { params: { slug: string } }) {
           {post.title}
         </h1>
       </div>
+      {post.image && (
+        <Image
+          src={post.image}
+          alt={post.title}
+          width={720}
+          height={405}
+          className="my-8 border rounded-md bg-muted"
+        />
+      )}
     </article>
   );
 }
