@@ -16,11 +16,14 @@ export default function PostPage({ params }: { params: { slug: string } }) {
   }
 
   return (
-    <article>
+    <article className="containermax-w-3xl py-6 lg:py-10">
       <div>
         {post.data && (
           <time>Published on {format(post.date, 'yyy/MM/dd')}</time>
         )}
+        <h1 className="mt-2 font-extrabold text-4xl lg:text-5xl leading-tight">
+          {post.title}
+        </h1>
       </div>
     </article>
   );
