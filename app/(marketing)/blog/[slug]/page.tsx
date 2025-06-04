@@ -1,4 +1,5 @@
 import { format } from 'date-fns';
+import { Image } from 'lucide-react';
 import { notFound } from 'next/navigation';
 
 async function getPostFromSlug(slug: string) {
