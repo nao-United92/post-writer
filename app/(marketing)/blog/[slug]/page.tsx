@@ -35,6 +35,7 @@ export default function PostPage({ params }: { params: { slug: string } }) {
           className="my-8 border rounded-md bg-muted"
         />
       )}
+      <div>{post.body}</div>
     </article>
   );
 }
