@@ -15,9 +15,9 @@ export default function PostPage({ params }: { params: { slug: string } }) {
   }
 
   return (
-    <div>
+    <article>
       <div>{post.title}</div>
       <div>{post.description}</div>
-    </div>
+    </article>
   );
 }
