@@ -37,7 +37,10 @@ export default function PostPage({ params }: { params: { slug: string } }) {
           className="my-8 border rounded-md bg-muted"
         />
       )}
-      <div>{post.body.html}</div>
+      <div
+        className="[&>*]:mb-3 [&>*:last-child]:mb-0"
+        dangerouslySetInnerHTML={{ __html: post.body.html }}
+      />
       <hr className="mt-12" />
       <div className="py-6 text-center lg:py-10">
         <Link
