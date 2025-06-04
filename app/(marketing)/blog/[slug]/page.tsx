@@ -1,5 +1,7 @@
+import { buttonVariants } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 import { format } from 'date-fns';
-import { Image } from 'lucide-react';
+import { Image, Link } from 'lucide-react';
 import { notFound } from 'next/navigation';
 
 async function getPostFromSlug(slug: string) {
@@ -37,6 +39,14 @@ export default function PostPage({ params }: { params: { slug: string } }) {
       )}
       <div>{post.body.html}</div>
       <hr className="mt-12" />
+      <div className="py-6 text-center lg:py-10">
+        <Link
+          href={'/blog'}
+          className={cn(buttonVariants({ variant: 'secondary' }))}
+        >
+          全ての記事を見る
+        </Link>
+      </div>
     </article>
   );
 }
