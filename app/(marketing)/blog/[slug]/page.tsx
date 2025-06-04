@@ -36,6 +36,7 @@ export default function PostPage({ params }: { params: { slug: string } }) {
         />
       )}
       <div>{post.body.html}</div>
+      <hr className="mt-12" />
     </article>
   );
 }
