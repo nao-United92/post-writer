@@ -1,3 +1,4 @@
+import { format } from 'date-fns';
 import { notFound } from 'next/navigation';
 
 async function getPostFromSlug(slug: string) {
@@ -16,8 +17,11 @@ export default function PostPage({ params }: { params: { slug: string } }) {
 
   return (
     <article>
-      <div>{post.title}</div>
-      <div>{post.description}</div>
+      <div>
+        {post.data && (
+          <time>Published on {format(post.date, 'yyy/MM/dd')}</time>
+        )}
+      </div>
     </article>
   );
 }
