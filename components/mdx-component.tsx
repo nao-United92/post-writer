@@ -9,6 +9,9 @@ const components = {
 
 export default function Mdx({ code }: { code: string }) {
   const Component = useMDXComponent(code);
+  if (!Component) {
+    return <div>Error loading content</div>;
+  }
 
   return (
     <div>
