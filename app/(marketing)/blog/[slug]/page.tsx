@@ -11,6 +11,23 @@ async function getPostFromSlug(slug: string) {
   return post;
 }
 
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const page = await getPostFromSlug(params.slug);
+
+  if (!page) {
+    return {};
+  }
+
+  return {
+    title: page.title,
+    description: page.description,
+  };
+}
+
 export default function PostPage({ params }: { params: { slug: string } }) {
   const slug = params.slug;
   const post = await getPostFromSlug(slug);
