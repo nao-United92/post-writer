@@ -12,7 +12,7 @@ export default function Mdx({ code }: { code: string }) {
 
   return (
     <div>
-      <Component components={component} />
+      <Component components={components} />
     </div>
   );
 }
