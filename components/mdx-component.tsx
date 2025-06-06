@@ -9,7 +9,6 @@ const components = {
 
 export default function Mdx({ code }: { code: string }) {
   const Component = useMDXComponent(code);
-  const { components: customComponents } = components;
 
   return (
     <div>
