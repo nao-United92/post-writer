@@ -3,6 +3,7 @@ import { buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { format } from 'date-fns';
 import { Image, Link } from 'lucide-react';
+import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 async function getPostFromSlug(slug: string) {
@@ -15,7 +16,7 @@ export async function generateMetadata({
   params,
 }: {
   params: { slug: string };
-}) {
+}): Promise<Metadata> {
   const page = await getPostFromSlug(params.slug);
 
   if (!page) {
@@ -25,6 +26,9 @@ export async function generateMetadata({
   return {
     title: page.title,
     description: page.description,
+    openGraph: {
+      title: page.title,
+    },
   };
 }
 
