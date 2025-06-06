@@ -1,5 +1,6 @@
 import Mdx from '@/components/mdx-component';
 import { buttonVariants } from '@/components/ui/button';
+import { siteConfig } from '@/config/site';
 import { cn } from '@/lib/utils';
 import { format } from 'date-fns';
 import { Image, Link } from 'lucide-react';
@@ -27,7 +28,19 @@ export async function generateMetadata({
     title: page.title,
     description: page.description,
     openGraph: {
-      title: page.title,
+      type: 'article',
+      locale: 'ja',
+      url: siteConfig.url,
+      title: siteConfig.name,
+      description: siteConfig.description,
+      siteName: siteConfig.name,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: siteConfig.name,
+      description: siteConfig.description,
+      images: [`${siteConfig.url}/og.jpg`],
+      creator: '@nao-United92',
     },
   };
 }
