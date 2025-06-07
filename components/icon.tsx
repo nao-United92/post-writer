@@ -1,11 +1,14 @@
+import { Loader2 } from 'lucide-react';
+
 export const Icon = {
-  github: () => (
+  spinner: Loader2,
+  github: ({ ...props }) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="256"
-      height="256"
+      width="22"
+      height="22"
       viewBox="0 0 432 416"
-      fill="#000000"
+      {...props}
     >
       <path
         fill="#000000"
