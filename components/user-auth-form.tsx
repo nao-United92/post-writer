@@ -6,8 +6,11 @@ import { Input } from './ui/input';
 import { Label } from './ui/label';
 import { Icon } from './icon';
 import { signIn } from 'next-auth/react';
+import { useState } from 'react';
 
 export default function UserAuthForm() {
+  const [isGithubLoading, setIsGithubLoading] = useState<boolean>(false);
+
   return (
     <div className="grid gap-6">
       <form>
@@ -35,9 +38,17 @@ export default function UserAuthForm() {
 
       <button
         className={cn(buttonVariants({ variant: 'outline' }))}
-        onClick={() => signIn('github')}
+        onClick={() => {
+          setIsGithubLoading(true);
+          signIn('github');
+        }}
       >
-        <Icon.github className="mr-2 animate-spin" />
+        {isGithubLoading ? (
+          <Icon.spinner className="mr-2 animate-spin" />
+        ) : (
+          <Icon.github className="mr-2" />
+        )}
+        Github
       </button>
     </div>
   );
