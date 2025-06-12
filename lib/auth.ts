@@ -1,11 +1,16 @@
 import { NextAuthOptions } from 'next-auth';
 import Github from 'next-auth/providers/github';
+import Google from 'next-auth/providers/google';
 
 export const authOption: NextAuthOptions = {
   providers: [
     Github({
       clientId: process.env.GITHUB_CLIENT_ID!,
       clientSecret: process.env.GITHUB_CLIENT_SECRET!,
+    }),
+    Google({
+      clientId: process.env.Google_CLIENT_ID!,
+      clientSecret: process.env.Google_CLIENT_SECRET!,
     }),
   ],
   pages: {
