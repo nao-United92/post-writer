@@ -27,8 +27,9 @@ export default function Register() {
         </div>
 
         <UserAuthForm />
+
         <p className="text-muted-foreground px-8 text-center text-sm">
-          続けてクリックすれば私たちの
+          続けてクリックすれば
           <Link href={'/terms'} className="underline underline-offset-4">
             利用規約
           </Link>
