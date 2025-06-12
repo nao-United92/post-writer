@@ -16,24 +16,28 @@ export default function Register() {
         ログイン
       </Link>
       <div className="h-full bg-muted lg:block hidden" />
-      <div className="flex flex-col justify-center h-screen items-center w-screen">
-        <div className="mx-auto w-full sm:w-[350px] flex flex-col justify-center space-y-6">
-          <div className="text-center space-y-2">
-            <h1 className="text-2xl font-semibold tracking-tight">
-              Welcome Back
-            </h1>
-            <p className="text-sm text-muted-foreground">
-              メールアドレスを入力してログインできます。
-            </p>
-          </div>
-
-          <UserAuthForm />
-          <p className="text-muted-foreground px-8 text-center text-sm">
-            <Link href={'register'} className="underline underline-offset-4">
-              アカウントを持っていませんか？
-            </Link>
+      <div className="mx-auto w-full sm:w-[350px] flex flex-col justify-center space-y-6">
+        <div className="text-center space-y-2">
+          <h1 className="text-2xl font-semibold tracking-tight">
+            アカウントの作成
+          </h1>
+          <p className="text-sm text-muted-foreground">
+            メールアドレスを入力してアカウント作成してください。
           </p>
         </div>
+
+        <UserAuthForm />
+        <p className="text-muted-foreground px-8 text-center text-sm">
+          続けてクリックすれば私たちの
+          <Link href={'/terms'} className="underline underline-offset-4">
+            利用規約
+          </Link>
+          と
+          <Link href={'/privacy'} className="underline underline-offset-4">
+            プライバシーポリシー
+          </Link>
+          に同意したことになります。
+        </p>
       </div>
     </div>
   );
