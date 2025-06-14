@@ -32,4 +32,7 @@ export const authOption: NextAuthOptions = {
       return session;
     },
   },
+  session: {
+    strategy: 'jwt',
+  },
 };
