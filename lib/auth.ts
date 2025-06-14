@@ -13,6 +13,7 @@ export const authOption: NextAuthOptions = {
     Google({
       clientId: process.env.Google_CLIENT_ID!,
       clientSecret: process.env.Google_CLIENT_SECRET!,
+      allowDangerousEmailAccountLinking: true,
     }),
   ],
   adapter: PrismaAdapter(db),
