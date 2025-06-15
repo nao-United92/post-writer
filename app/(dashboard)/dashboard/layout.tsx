@@ -11,8 +11,8 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div>
-      <header className="container z-40 bg-background">
+    <div className='flex min-h-screen flex-col space-y-6'>
+      <header className="sticky top-0 z-40 border-b bg-background">
         <div>
           <MainNav items={marketingConfig.mainNav}/>
         </div>
