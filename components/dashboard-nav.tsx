@@ -1,21 +1,27 @@
 import { Link } from 'lucide-react';
-import { Icon, Icon as Icons } from '@/components/ui/icon';
+import { Icon as Icons } from './icon';
+import { SidebarNavItem } from '@/types';
 
 interface DashboardNavProps {
-  items: SidebarNavItems[];
+  items: SidebarNavItem[];
 }
 
 export default function DashboardNav({ items }: DashboardNavProps) {
+  if (!items.length) {
+    return null;
+  }
+
   return (
     <nav>
       {items.map((item, index) => {
         const Icon = Icons[item.icon || 'arrowRight'];
+
         return (
           <Link href={item.href} key={index}>
             <span
               className={`flex items-center rounded-md px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground`}
             >
-              <Icon />
+              <Icon className="mr-2 h-4 w-4" />
               {item.title}
             </span>
           </Link>
