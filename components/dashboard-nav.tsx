@@ -1,3 +1,5 @@
+'use client';
+
 import { Link } from 'lucide-react';
 import { Icon as Icons } from './icon';
 import { SidebarNavItem } from '@/types';
@@ -22,7 +24,9 @@ export default function DashboardNav({ items }: DashboardNavProps) {
         return (
           <Link href={item.href} key={index}>
             <span
-              className={`flex items-center rounded-md px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground`}
+              className={`flex items-center rounded-md px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground ${
+                path === item.href ? 'bg-accent' : 'transparent'
+              }`}
             >
               <Icon className="mr-2 h-4 w-4" />
               {item.title}
