@@ -1,12 +1,15 @@
 import { Link } from 'lucide-react';
 import { Icon as Icons } from './icon';
 import { SidebarNavItem } from '@/types';
+import { usePathname } from 'next/navigation';
 
 interface DashboardNavProps {
   items: SidebarNavItem[];
 }
 
 export default function DashboardNav({ items }: DashboardNavProps) {
+  const path = usePathname();
+
   if (!items.length) {
     return null;
   }
