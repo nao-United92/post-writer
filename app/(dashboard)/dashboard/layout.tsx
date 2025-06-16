@@ -1,3 +1,4 @@
+import DashboardNav from '@/components/dashboard-nav';
 import MainNav from '@/components/main-nav';
 import SiteFooter from '@/components/site-footer';
 import { buttonVariants } from '@/components/ui/button';
