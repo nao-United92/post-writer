@@ -1,6 +1,7 @@
 import { Post } from '@/generated/prisma';
 import { format } from 'date-fns';
 import Link from 'next/link';
+import PostOperations from './post-operations';
 
 interface PostItemProps {
   post: Pick<Post, 'id' | 'title' | 'published' | 'createdAt'>;
@@ -23,6 +24,8 @@ export default function PostItem({ post }: PostItemProps) {
           </p>
         </div>
       </div>
+
+      <PostOperations post={post} />
     </div>
   );
 }
