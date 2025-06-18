@@ -21,6 +21,14 @@ export const authOption: NextAuthOptions = {
     signIn: '/login',
   },
   callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        return { ...token, id: user.id };
+      }
+
+      return token;
+    },
+
     async session({ token, session }) {
       if (token) {
         session.user.id = token.id;
