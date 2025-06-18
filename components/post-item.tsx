@@ -1,4 +1,5 @@
 import { Post } from '@/generated/prisma';
+import { format } from 'date-fns';
 import Link from 'next/link';
 
 interface PostItemProps {
@@ -15,6 +16,12 @@ export default function PostItem({ post }: PostItemProps) {
         >
           {post.title}
         </Link>
+
+        <div>
+          <p className="text-sm text-muted-foreground">
+            {format(post.createdAt, 'yyyy-MM-dd')}
+          </p>
+        </div>
       </div>
     </div>
   );

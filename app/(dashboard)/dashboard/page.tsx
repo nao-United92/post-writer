@@ -34,9 +34,11 @@ export default async function DashboardPage() {
         <PostCreateButton />
       </DashboardHeader>
       <div>
-        {posts.map((post) => (
-          <PostItem key={post.id} post={post} />
-        ))}
+        <div className="divide-y border rounded-md">
+          {posts.map((post) => (
+            <PostItem key={post.id} post={post} />
+          ))}
+        </div>
       </div>
     </DashboardShell>
   );
