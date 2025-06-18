@@ -3,6 +3,7 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from './ui/dropdown-menu';
 import { Icon } from './icon';
@@ -21,7 +22,13 @@ export default function PostOperations({ post }: PostOperationsProps) {
         </DropdownMenuTrigger>
         <DropdownMenuContent>
           <DropdownMenuItem>
-            <Link href={`/editor/${post.id}`}>編集</Link>
+            <Link href={`/editor/${post.id}`} className="w-full">
+              編集
+            </Link>
+          </DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem className="text-destructive cursor-pointer focus:text-destructive">
+            削除
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
