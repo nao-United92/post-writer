@@ -1,6 +1,7 @@
 import DashboardHeader from '@/components/dashboard-header';
 import DashboardShell from '@/components/dashboard-shell';
 import PostCreateButton from '@/components/post-create-button';
+import PostItem from '@/components/post-item';
 import { db } from '@/lib/db';
 import { getCurrenUser } from '@/lib/session';
 import { redirect } from 'next/navigation';
@@ -12,7 +13,7 @@ export default async function DashboardPage() {
     redirect('/login');
   }
 
-  const posts = db.post.findMany({
+  const posts = await db.post.findMany({
     where: {
       authorId: user.id,
     },
@@ -32,6 +33,11 @@ export default async function DashboardPage() {
       <DashboardHeader heading="記事投稿" text="記事の投稿と管理">
         <PostCreateButton />
       </DashboardHeader>
+      <div>
+        {posts.map((post) => (
+          <PostItem key={post.id} post={post} />
+        ))}
+      </div>
     </DashboardShell>
   );
 }
