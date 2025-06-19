@@ -9,14 +9,18 @@ import Header from '@editorjs/header';
 import LinkTool from '@editorjs/link';
 import List from '@editorjs/list';
 import Code from '@editorjs/code';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 export default function Editor() {
+  const ref = useRef<EditorJS>();
   const [isMounted, setIsMounted] = useState<boolean>(false);
 
-  const initializeEditor = async () => {
+  const initializeEditor = useCallback(async () => {
     const editor = new EditorJS({
       holder: 'editor',
+      onReady() {
+        ref.current = editor;
+      },
       placeholder: 'ここに記事を書く',
       inlineToolbar: true,
       tools: {
@@ -26,7 +30,7 @@ export default function Editor() {
         code: Code,
       },
     });
-  };
+  }, []);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -38,7 +42,12 @@ export default function Editor() {
     if (isMounted) {
       initializeEditor();
     }
-  }, [isMounted]);
+
+    return () => {
+      ref.current?.destroy();
+      ref.current = undefined;
+    };
+  }, [isMounted, initializeEditor]);
 
   return (
     <form>
@@ -57,7 +66,7 @@ export default function Editor() {
             <span>保存</span>
           </button>
         </div>
-        <div>
+        <div className="w-[800px] mx-auto">
           <TextareaAutosize
             id="title"
             autoFocus
