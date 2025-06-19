@@ -5,6 +5,10 @@ import { buttonVariants } from './ui/button';
 import { cn } from '@/lib/utils';
 import TextareaAutosize from 'react-textarea-autosize';
 import EditorJS from '@editorjs/editorjs';
+import Header from '@editorjs/header';
+import LinkTool from '@editorjs/link';
+import List from '@editorjs/list';
+import Code from '@editorjs/code';
 import { useEffect, useState } from 'react';
 
 export default function Editor() {
@@ -15,6 +19,12 @@ export default function Editor() {
       holder: 'editor',
       placeholder: 'ここに記事を書く',
       inlineToolbar: true,
+      tools: {
+        header: Header,
+        linkTool: LinkTool,
+        list: List,
+        code: Code,
+      },
     });
   };
 
