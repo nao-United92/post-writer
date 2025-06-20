@@ -14,6 +14,7 @@ import { Post } from '@/generated/prisma';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { postPatchSchema, postPatchSchemaType } from '@/lib/validations/post';
+import { Icon } from './icon';
 interface EditorProps {
   post: Pick<Post, 'id' | 'title' | 'content' | 'published'>;
 }
@@ -21,8 +22,11 @@ interface EditorProps {
 export default function Editor({ post }: EditorProps) {
   const ref = useRef<EditorJS>();
   const [isMounted, setIsMounted] = useState<boolean>(false);
+  const [isSaving, setIsSaving] = useState<boolean>(false);
 
   const initializeEditor = useCallback(async () => {
+    const body = postPatchSchema.parse(post);
+
     const editor = new EditorJS({
       holder: 'editor',
       onReady() {
@@ -30,6 +34,7 @@ export default function Editor({ post }: EditorProps) {
       },
       placeholder: 'ここに記事を書く',
       inlineToolbar: true,
+      data: body.content,
       tools: {
         header: Header,
         linkTool: LinkTool,
@@ -37,7 +42,7 @@ export default function Editor({ post }: EditorProps) {
         code: Code,
       },
     });
-  }, []);
+  }, [post]);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -65,6 +70,7 @@ export default function Editor({ post }: EditorProps) {
   });
 
   const onSubmit = async (data: postPatchSchemaType) => {
+    setIsSaving(true);
     const blocks = await ref.current?.save();
 
     const response = await fetch(`/api/posts/${post.id}`, {
@@ -77,6 +83,8 @@ export default function Editor({ post }: EditorProps) {
         content: blocks,
       }),
     });
+
+    setIsSaving(false);
 
     if (!response.ok) {
       toast({
@@ -111,6 +119,7 @@ export default function Editor({ post }: EditorProps) {
             <p className="text-sm text-muted-foreground">公開</p>
           </div>
           <button className={cn(buttonVariants())} type="submit">
+            {isSaving && <Icon.spinner className="w-4 h-4 animate-spin" />}
             <span>保存</span>
           </button>
         </div>
