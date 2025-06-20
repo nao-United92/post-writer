@@ -17,6 +17,10 @@ export async function PATCH(
   try {
     const { params } = routeContextSchema.parse(context);
 
+    if (await verifyCurrentUserHasAccessToPost(params.postId)) {
+      return NextResponse.json(null, { status: 403 });
+    }
+
     const json = await req.json();
     const body = postPatchSchema.parse(json);
 
@@ -39,7 +43,7 @@ export async function PATCH(
   }
 }
 
-async function verifyCurrenrUserHasAccessToPost(postId: string) {
+async function verifyCurrentUserHasAccessToPost(postId: string) {
   const session = await getServerSession(authOptions);
   const count = await db.post.count({
     where: {
