@@ -22,6 +22,7 @@ import {
 } from './ui/alert-dialog';
 import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 
 async function deletePost(postId: string) {
   try {
@@ -50,6 +51,7 @@ interface PostOperationsProps {
 export default function PostOperations({ post }: PostOperationsProps) {
   const router = useRouter();
   const [showDeleteAlert, setShowDeleteAlert] = useState<boolean>(false);
+  const [isDeleteLoading, setIsDeleteLoading] = useState<boolean>(false);
 
   return (
     <div>
@@ -85,14 +87,22 @@ export default function PostOperations({ post }: PostOperationsProps) {
             <AlertDialogAction
               onClick={async (e) => {
                 e.preventDefault();
+                setIsDeleteLoading(true);
                 const deleted = await deletePost(post.id);
 
                 if (deleted) {
                   setShowDeleteAlert(false);
+                  setIsDeleteLoading(false);
                   router.refresh();
                 }
               }}
+              className="bg-red-600 focus:ring-red-600"
             >
+              {isDeleteLoading ? (
+                <Icon.spinner className="animate-spin mr-2 w-4 h-4" />
+              ) : (
+                <Icon.trash className="w-4 h-4 mr-2" />
+              )}
               削除
             </AlertDialogAction>
           </AlertDialogFooter>
