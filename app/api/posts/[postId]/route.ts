@@ -13,20 +13,27 @@ export async function PATCH(
   req: NextRequest,
   context: z.infer<typeof routeContextSchema>
 ) {
-  const { params } = routeContextSchema.parse(context);
+  try {
+    const { params } = routeContextSchema.parse(context);
 
-  const json = await req.json();
-  const body = postPatchSchema.parse(json);
+    const json = await req.json();
+    const body = postPatchSchema.parse(json);
 
-  await db.post.update({
-    where: {
-      id: params.postId,
-    },
-    data: {
-      title: body.title,
-      content: body.content,
-    },
-  });
-
-  return NextResponse.json(null, { status: 200 });
+    await db.post.update({
+      where: {
+        id: params.postId,
+      },
+      data: {
+        title: body.title,
+        content: body.content,
+      },
+    });
+    return NextResponse.json(null, { status: 200 });
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      return NextResponse.json(error.issues, { status: 422 });
+    } else {
+      return NextResponse.json(null, { status: 500 });
+    }
+  }
 }
