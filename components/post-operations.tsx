@@ -1,3 +1,5 @@
+'use client';
+
 import { Post } from '@/generated/prisma';
 import {
   DropdownMenu,
@@ -8,12 +10,24 @@ import {
 } from './ui/dropdown-menu';
 import { Icon } from './icon';
 import Link from 'next/link';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from './ui/alert-dialog';
 
 interface PostOperationsProps {
   post: Pick<Post, 'id' | 'title'>;
 }
 
 export default function PostOperations({ post }: PostOperationsProps) {
+  const [showDeleteAlert, setShowDeleteAlert] = useState<boolean>(false);
+
   return (
     <div>
       <DropdownMenu>
@@ -27,11 +41,28 @@ export default function PostOperations({ post }: PostOperationsProps) {
             </Link>
           </DropdownMenuItem>
           <DropdownMenuSeparator />
-          <DropdownMenuItem className="text-destructive cursor-pointer focus:text-destructive">
+          <DropdownMenuItem
+            className="text-destructive cursor-pointer focus:text-destructive"
+            onClick={() => setShowDeleteAlert(true)}
+          >
             削除
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
+      <AlertDialog open={showDeleteAlert} onOpenChange={setShowDeleteAlert}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>本当にこの記事を削除しますか？</AlertDialogTitle>
+            <AlertDialogDescription>
+              この操作は取り返しができません。
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>キャンセル</AlertDialogCancel>
+            <AlertDialogAction>削除</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }
