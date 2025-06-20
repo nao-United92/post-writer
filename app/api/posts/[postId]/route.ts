@@ -1,5 +1,6 @@
 import { db } from '@/lib/db';
 import { postPatchSchema } from '@/lib/validations/post';
+import { getServerSession } from 'next-auth';
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 
@@ -36,4 +37,16 @@ export async function PATCH(
       return NextResponse.json(null, { status: 500 });
     }
   }
+}
+
+async function verifyCurrenrUserHasAccessToPost(postId: string) {
+  const session = await getServerSession(authOptions);
+  const count = await db.post.count({
+    where: {
+      id: postId,
+      authorId: session?.user.id,
+    },
+  });
+
+  return count > 0;
 }
