@@ -66,7 +66,35 @@ export default function Editor({ post }: EditorProps) {
 
   const onSubmit = async (data: postPatchSchemaType) => {
     const blocks = await ref.current?.save();
-    console.log(data);
+
+    const response = await fetch(`/api/posts/${post.id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        title: data.title,
+        content: blocks,
+      }),
+    });
+
+    if (!response.ok) {
+      toast({
+        title: '問題が発生しました。',
+        description:
+          'あなたの記事は保存されませんでした。もう一度お試しください。',
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    router.refresh();
+
+    return toast({
+      title: '正常に保存されました。',
+      description: '正常に保存されました。',
+      variant: 'default',
+    });
   };
 
   return (
@@ -107,4 +135,7 @@ export default function Editor({ post }: EditorProps) {
       </div>
     </form>
   );
+}
+function toast(arg0: { title: string; description: string; variant: string }) {
+  throw new Error('Function not implemented.');
 }
