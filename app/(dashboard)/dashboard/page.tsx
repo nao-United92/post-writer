@@ -3,11 +3,11 @@ import DashboardShell from '@/components/dashboard-shell';
 import PostCreateButton from '@/components/post-create-button';
 import PostItem from '@/components/post-item';
 import { db } from '@/lib/db';
-import { getCurrenUser } from '@/lib/session';
+import { getCurrentUser } from '@/lib/session';
 import { redirect } from 'next/navigation';
 
 export default async function DashboardPage() {
-  const user = await getCurrenUser();
+  const user = await getCurrentUser();
 
   if (!user) {
     redirect('/login');
