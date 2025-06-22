@@ -5,7 +5,6 @@ import { ButtonProps, buttonVariants } from './ui/button';
 import { useState } from 'react';
 import { Icon } from './icon';
 import { useRouter } from 'next/navigation';
-import { Toaster } from './ui/sonner';
 import { toast } from 'sonner';
 
 interface PostCreateButtonProps extends ButtonProps {}
@@ -46,7 +45,7 @@ export default function PostCreateButton({
   return (
     <button
       className={cn(
-        buttonVariants(variant),
+        buttonVariants({ variant }),
         { 'cursor-not-allowed opacity-60': isLoading },
         className
       )}
