@@ -35,12 +35,12 @@ async function deletePost(postId: string) {
     }
 
     return true;
-  } catch (err) {
-    toast({
-      title: '問題が発生しました。',
+  } catch {
+    toast.error('記事の削除ができませんでした。もう一度お試しください。', {
       description: '記事の削除ができませんでした。もう一度お試しください。',
-      variant: 'destructive',
     });
+
+    return false;
   }
 }
 

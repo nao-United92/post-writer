@@ -7,7 +7,7 @@ import { Icon } from './icon';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 
-interface PostCreateButtonProps extends ButtonProps {}
+type PostCreateButtonProps = ButtonProps;
 
 export default function PostCreateButton({
   className,

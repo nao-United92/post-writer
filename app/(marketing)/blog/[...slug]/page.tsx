@@ -6,7 +6,7 @@ import { format } from 'date-fns';
 import { Image, Link } from 'lucide-react';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { allPosts } from 'contentlayer/generated';
+import { allPosts } from '@/.contentlayer/generated';
 
 async function getPostFromSlug(slug: string) {
   const post = allPosts.find((post) => post.slugAsParams === slug);
