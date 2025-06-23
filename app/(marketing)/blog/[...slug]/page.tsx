@@ -7,7 +7,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { allPosts } from 'contentlayer/generated';
+import { allPosts } from '@/.contentlayer/generated';
 
 async function getPostFromSlug(slug: string) {
   const post = allPosts.find((post) => post.slugAsParams === slug);
