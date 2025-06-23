@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { format, formatData } from 'date-fns';
 import Link from 'next/link';
+import { allPosts } from '@/.contentlayer/generated';
 
 export default function BlogPage() {
   const posts = allPosts;
@@ -18,7 +19,7 @@ export default function BlogPage() {
         </div>
       </div>
       <hr className="my-8" />
-      <div className='grid sm:grid-cols-2 gap-10'>
+      <div className="grid sm:grid-cols-2 gap-10">
         {posts.map((post) => (
           <article key={post._id} className="relative flex flex-col space-y-2">
             <Image
