@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { format, formatData } from 'date-fns';
 import Link from 'next/link';
-import { allPosts } from '@/.contentlayer/generated';
+import { allPosts } from 'contentlayer/generated';
 
 export default function BlogPage() {
   const posts = allPosts;
