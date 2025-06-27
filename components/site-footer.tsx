@@ -13,7 +13,7 @@ export default function SiteFooter() {
             target="_blank"
             rel="noreferrer"
           >
-            ShinCode
+            nao-United92
           </Link>
           . Hosted on{' '}
           <Link

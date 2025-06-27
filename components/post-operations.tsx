@@ -79,7 +79,7 @@ export default function PostOperations({ post }: PostOperationsProps) {
           <AlertDialogHeader>
             <AlertDialogTitle>本当にこの記事を削除しますか？</AlertDialogTitle>
             <AlertDialogDescription>
-              この操作は取り返しができません。
+              この操作はやり直しができません。
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
