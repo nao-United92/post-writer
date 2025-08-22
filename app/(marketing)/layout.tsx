@@ -12,23 +12,12 @@ export default function MarketingLayout({
 }) {
   return (
     <div>
-      <header className="container z-40 bg-background">
-        <div className="h-20 py-6 flex items-center justify-between">
+      <header className="z-40 bg-background">
+        <div className="container mx-auto flex h-20 max-w-4xl items-center py-2">
           <MainNav items={marketingConfig.mainNav} />
-          <nav>
-            <Link
-              href={'/login'}
-              className={cn(
-                buttonVariants({ variant: 'secondary', size: 'sm' }),
-                'px-4'
-              )}
-            >
-              ログイン
-            </Link>
-          </nav>
         </div>
       </header>
-      <main>{children}</main>
+      <main className="container max-w-4xl mx-auto py-6 lg:py-10">{children}</main>
       <SiteFooter />
     </div>
   );

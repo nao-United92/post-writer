@@ -62,8 +62,8 @@ export default async function PostPage({
   return (
     <article className="containermax-w-3xl py-6 lg:py-10">
       <div>
-        {post.data && (
-          <time>Published on {format(post.date, 'yyy/MM/dd')}</time>
+        {post.date && (
+          <time dateTime={post.date}>Published on {format(post.date, 'yyyy/MM/dd')}</time>
         )}
         <h1 className="mt-2 font-extrabold text-4xl lg:text-5xl leading-tight">
           {post.title}

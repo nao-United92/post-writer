@@ -1,4 +1,5 @@
 import { db } from '@/lib/db';
+import { authOption } from '@/lib/auth';
 import { postPatchSchema } from '@/lib/validations/post';
 import { getServerSession } from 'next-auth';
 import { NextRequest, NextResponse } from 'next/server';
@@ -70,7 +71,7 @@ export async function DELETE(
 }
 
 async function verifyCurrentUserHasAccessToPost(postId: string) {
-  const session = await getServerSession(authOptions);
+  const session = await getServerSession(authOption);
   const count = await db.post.count({
     where: {
       id: postId,
