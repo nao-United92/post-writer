@@ -42,7 +42,7 @@ export default function IndexPage() {
 
       <section
         id="features"
-        className="container py-8 md:py-12 lg:py-24 bg-slate-50 space-y-6"
+        className="container py-12 md:py-16 lg:py-24 bg-slate-50 space-y-16"
       >
         <div className="text-center space-y-6 max-w-[58rem] mx-auto">
           <h2 className="font-extrabold text-3xl md:text-6xl">
@@ -53,9 +53,9 @@ export default function IndexPage() {
           </p>
         </div>
 
-        <div className="mx-auto grid sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-[64rem]">
-          <div className="bg-background border p-2 rounded-lg">
-            <div className="flex flex-col justify-center p-6 h-[180px]">
+        <div className="mx-auto grid sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-[64rem]">
+          <div className="bg-background border p-4 rounded-lg">
+            <div className="flex flex-col justify-center p-8 h-[180px] gap-4">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="45"
@@ -73,8 +73,8 @@ export default function IndexPage() {
             </div>
           </div>
 
-          <div className="bg-background border p-2 rounded-lg">
-            <div className="flex flex-col justify-center p-6 h-[180px]">
+          <div className="bg-background border p-4 rounded-lg">
+            <div className="flex flex-col justify-center p-8 h-[180px] gap-4">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="45"
@@ -92,8 +92,8 @@ export default function IndexPage() {
             </div>
           </div>
 
-          <div className="bg-background border p-2 rounded-lg">
-            <div className="flex flex-col justify-center p-6 h-[180px]">
+          <div className="bg-background border p-4 rounded-lg">
+            <div className="flex flex-col justify-center p-8 h-[180px] gap-4">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="45"
@@ -111,8 +111,8 @@ export default function IndexPage() {
             </div>
           </div>
 
-          <div className="bg-background border p-2 rounded-lg">
-            <div className="flex flex-col justify-center p-6 h-[180px]">
+          <div className="bg-background border p-4 rounded-lg">
+            <div className="flex flex-col justify-center p-8 h-[180px] gap-4">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="45"
@@ -130,8 +130,8 @@ export default function IndexPage() {
             </div>
           </div>
 
-          <div className="bg-background border p-2 rounded-lg">
-            <div className="flex flex-col justify-center p-6 h-[180px]">
+          <div className="bg-background border p-4 rounded-lg">
+            <div className="flex flex-col justify-center p-8 h-[180px] gap-4">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="45"
@@ -149,8 +149,8 @@ export default function IndexPage() {
             </div>
           </div>
 
-          <div className="bg-background border p-2 rounded-lg">
-            <div className="flex flex-col justify-center p-6 h-[180px]">
+          <div className="bg-background border p-4 rounded-lg">
+            <div className="flex flex-col justify-center p-8 h-[180px] gap-4">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="45"

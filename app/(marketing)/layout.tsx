@@ -13,11 +13,13 @@ export default function MarketingLayout({
   return (
     <div>
       <header className="z-40 bg-background">
-        <div className="container mx-auto flex h-20 max-w-4xl items-center py-2">
+        <div className="container mx-auto flex h-20 items-center py-2">
           <MainNav items={marketingConfig.mainNav} />
         </div>
       </header>
-      <main className="container max-w-4xl mx-auto py-6 lg:py-10">{children}</main>
+      <main className="container max-w-4xl mx-auto py-6 lg:py-10">
+        {children}
+      </main>
       <SiteFooter />
     </div>
   );
