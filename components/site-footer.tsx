@@ -5,7 +5,7 @@ export default function SiteFooter() {
   return (
     <footer>
       <div className="container max-w-4xl mx-auto py-10 md:py-0 md:h-20">
-        <p className="text-center text-sm md:text-left">
+        <p className="text-center text-sm">
           Built by {''}
           <Link
             href={siteConfig.links.x}
