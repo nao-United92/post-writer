@@ -3,12 +3,11 @@
 import { cn } from '@/lib/utils';
 import { buttonVariants } from './ui/button';
 import { Input } from './ui/input';
-import { Label } from './ui/label';
 import { Icon } from './icon';
 import { signIn } from 'next-auth/react';
 import { useState } from 'react';
 
-export default function UserAuthForm() {
+export default function UserAuthForm({ buttonText }: { buttonText?: string }) {
   const [isGithubLoading, setIsGithubLoading] = useState<boolean>(false);
   const [isGoogleLoading, setIsGoogleLoading] = useState<boolean>(false);
 
@@ -17,11 +16,10 @@ export default function UserAuthForm() {
       <form>
         <div className="grid gap-2">
           <div className="grid gap-1">
-            <Label htmlFor="email">メールアドレス</Label>
             <Input id="email" placeholder="name@example.com" type="email" />
           </div>
           <button className={cn(buttonVariants())}>
-            メールアドレスでログイン
+            {buttonText || 'ログイン'}
           </button>
         </div>
       </form>

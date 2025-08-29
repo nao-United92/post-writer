@@ -21,12 +21,9 @@ export default function Register() {
           <h1 className="text-2xl font-semibold tracking-tight">
             アカウントの作成
           </h1>
-          <p className="text-sm text-muted-foreground">
-            メールアドレスを入力してアカウント作成してください。
-          </p>
         </div>
 
-        <UserAuthForm />
+        <UserAuthForm buttonText="作成" />
 
         <p className="text-muted-foreground px-8 text-center text-sm">
           続けてクリックすれば
