@@ -2,12 +2,8 @@ import { authOption } from '@/lib/auth';
 import { db } from '@/lib/db';
 import { getServerSession } from 'next-auth';
 import { NextRequest, NextResponse } from 'next/server';
+import { postCreateSchema } from '@/lib/validations/post';
 import { z } from 'zod';
-
-const postCreateSchema = z.object({
-  title: z.string(),
-  content: z.string().optional(),
-});
 
 
 export async function POST(req: NextRequest) {
@@ -40,7 +36,7 @@ export async function POST(req: NextRequest) {
     if (err instanceof z.ZodError) {
       return NextResponse.json(err.issues, { status: 422 });
     }
-
+    console.error(err);
     return NextResponse.json(null, { status: 500 });
   }
 }

@@ -18,7 +18,7 @@ export async function PATCH(
   try {
     const { params } = routeContextSchema.parse(context);
 
-    if (await verifyCurrentUserHasAccessToPost(params.postId)) {
+    if (!await verifyCurrentUserHasAccessToPost(params.postId)) {
       return NextResponse.json(null, { status: 403 });
     }
 
@@ -51,7 +51,7 @@ export async function DELETE(
   try {
     const { params } = routeContextSchema.parse(context);
 
-    if (await verifyCurrentUserHasAccessToPost(params.postId)) {
+    if (!await verifyCurrentUserHasAccessToPost(params.postId)) {
       return NextResponse.json(null, { status: 403 });
     }
 

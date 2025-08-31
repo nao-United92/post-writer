@@ -17,29 +17,8 @@ export default function PostCreateButton({
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
-  const onClick = async () => {
-    setIsLoading(true);
-
-    const response = await fetch('/api/posts', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        title: 'Untitled Post',
-      }),
-    });
-
-    setIsLoading(false);
-
-    if (!response.ok) {
-      return toast.error(
-        '投稿が作成されませんでした。もう一度お試しください。'
-      );
-    }
-
-    const post = await response.json();
-    router.push(`/editor/${post.id}`);
+  const onClick = () => {
+    router.push('/editor/new');
   };
 
   return (

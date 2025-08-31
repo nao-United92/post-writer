@@ -1,18 +1,22 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from '@prisma/client'
+
+let db: PrismaClient
 
 declare global {
-  var cachePrisma: PrismaClient;
+  // eslint-disable-next-line no-var
+  var __db: PrismaClient | undefined
 }
 
-let prisma: PrismaClient;
-
+// this is needed because in development we don't want to restart
+// the server with every change, but we want to make sure we don't
+// create a new connection to the DB with every change either.
 if (process.env.NODE_ENV === 'production') {
-  prisma = new PrismaClient();
+  db = new PrismaClient()
 } else {
-  if (!global.cachePrisma) {
-    global.cachePrisma = new PrismaClient();
+  if (!global.__db) {
+    global.__db = new PrismaClient()
   }
-  prisma = global.cachePrisma;
+  db = global.__db
 }
 
-export const db = prisma;
+export default db

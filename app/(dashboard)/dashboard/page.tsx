@@ -2,7 +2,8 @@ import DashboardHeader from '@/components/dashboard-header';
 import DashboardShell from '@/components/dashboard-shell';
 import PostCreateButton from '@/components/post-create-button';
 import PostItem from '@/components/post-item';
-import { db } from '@/lib/db';
+import db from '@/lib/db';
+import { EmptyPlaceholder } from '@/components/empty-placeholder';
 import { getCurrentUser } from '@/lib/session';
 import { redirect } from 'next/navigation';
 
@@ -30,18 +31,25 @@ export default async function DashboardPage() {
 
   return (
     <DashboardShell>
-      <DashboardHeader heading="記事投稿" text="記事の投稿と管理">
-        <PostCreateButton />
+      <DashboardHeader heading="記事投稿">
       </DashboardHeader>
       <div>
         {posts.length ? (
-          <div className="divide-y border rounded-md">
+          <div className="divide-y rounded-md border shadow-sm">
             {posts.map((post) => (
               <PostItem key={post.id} post={post} />
             ))}
           </div>
         ) : (
-          <div className="ml-2">投稿がありません。</div>
+          <EmptyPlaceholder
+            icon="post"
+            title="投稿がありません"
+            description="記事を作成してください"
+          >
+            <EmptyPlaceholder.Actions>
+              <PostCreateButton variant="outline" />
+            </EmptyPlaceholder.Actions>
+          </EmptyPlaceholder>
         )}
       </div>
     </DashboardShell>

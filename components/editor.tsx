@@ -15,11 +15,15 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { postPatchSchema, postPatchSchemaType } from '@/lib/validations/post';
 import { Icon } from './icon';
+import { useRouter } from 'next/navigation';
+import { toast } from 'sonner';
 interface EditorProps {
   post: Pick<Post, 'id' | 'title' | 'content' | 'published'>;
+  isNewPost?: boolean;
 }
 
-export default function Editor({ post }: EditorProps) {
+export default function Editor({ post, isNewPost }: EditorProps) {
+  const router = useRouter();
   const ref = useRef<EditorJS>();
   const [isMounted, setIsMounted] = useState<boolean>(false);
   const [isSaving, setIsSaving] = useState<boolean>(false);
@@ -67,48 +71,69 @@ export default function Editor({ post }: EditorProps) {
     formState: { errors },
   } = useForm<postPatchSchemaType>({
     resolver: zodResolver(postPatchSchema),
+    defaultValues: {
+      title: post.title,
+    },
   });
 
   const onSubmit = async (data: postPatchSchemaType) => {
     setIsSaving(true);
     const blocks = await ref.current?.save();
 
-    const response = await fetch(`/api/posts/${post.id}`, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        title: data.title,
-        content: blocks,
-      }),
-    });
+    let response;
+    if (post.id) {
+      // Existing post: PATCH request
+      response = await fetch(`/api/posts/${post.id}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          title: data.title,
+          content: blocks,
+        }),
+      });
+    } else {
+      // New post: POST request
+      response = await fetch('/api/posts', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          title: data.title,
+          content: blocks,
+        }),
+      });
+    }
 
     setIsSaving(false);
 
     if (!response.ok) {
-      toast({
-        title: '問題が発生しました。',
+      return toast.error('問題が発生しました。', {
         description:
           'あなたの記事は保存されませんでした。もう一度お試しください。',
-        variant: 'destructive',
       });
-      return;
     }
 
-    window.location.reload();
+    if (!post.id) {
+      // If it was a new post, redirect to the new post's editor page
+      const newPost = await response.json();
+      router.push(`/editor/${newPost.id}`);
+    } else {
+      // For existing posts, reload the page (or refresh data)
+      window.location.reload();
+    }
 
-    return toast({
-      title: '正常に保存されました。',
+    toast.success('正常に保存されました。', {
       description: '正常に保存されました。',
-      variant: 'default',
     });
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="grid w-full gap-10">
-        <div className="flex w-full items-center justify-between">
+        <div className="flex w-full items-center justify-between px-4 py-4">
           <div className="flex items-center space-x-10">
             <Link
               href={'/dashboard'}
@@ -116,11 +141,10 @@ export default function Editor({ post }: EditorProps) {
             >
               戻る
             </Link>
-            <p className="text-sm text-muted-foreground">公開</p>
           </div>
           <button className={cn(buttonVariants())} type="submit">
             {isSaving && <Icon.spinner className="w-4 h-4 animate-spin" />}
-            <span>保存</span>
+            <span>公開</span>
           </button>
         </div>
         <div className="w-[800px] mx-auto">
@@ -134,17 +158,7 @@ export default function Editor({ post }: EditorProps) {
           />
         </div>
         <div id="editor" className="min-h-[500px]" />
-        <p className="text-sm text-gray-500">
-          Use
-          <kbd className="rounded-md border bg-muted px-1 text-xs uppercase">
-            Tab
-          </kbd>
-          to open the command menu
-        </p>
       </div>
     </form>
   );
-}
-function toast(arg0: { title: string; description: string; variant: string }) {
-  throw new Error('Function not implemented.');
 }
