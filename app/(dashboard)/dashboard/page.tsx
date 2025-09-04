@@ -32,6 +32,7 @@ export default async function DashboardPage() {
   return (
     <DashboardShell>
       <DashboardHeader heading="記事投稿">
+        {posts.some((post) => post.published) && <PostCreateButton />}
       </DashboardHeader>
       <div>
         {posts.length ? (

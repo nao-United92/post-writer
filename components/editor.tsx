@@ -118,14 +118,8 @@ export default function Editor({ post, isNewPost }: EditorProps) {
       });
     }
 
-    if (!post.id) {
-      // If it was a new post, redirect to the new post's editor page
-      const newPost = await response.json();
-      router.push(`/editor/${newPost.id}`);
-    } else {
-      // For existing posts, reload the page (or refresh data)
-      window.location.reload();
-    }
+    // Redirect to dashboard after successful save/publish
+    router.push('/dashboard');
 
     toast.success('正常に保存されました。', {
       description: '正常に保存されました。',

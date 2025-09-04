@@ -37,7 +37,7 @@ export default function PostCreateButton({
       ) : (
         <Icon.add className="mr-2 h-4 w-4" />
       )}
-      新しい投稿
+      投稿する
     </button>
   );
 }
