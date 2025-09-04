@@ -1,10 +1,9 @@
 import { authOption } from '@/lib/auth';
-import { db } from '@/lib/db';
+import db from '@/lib/db';
 import { getServerSession } from 'next-auth';
 import { NextRequest, NextResponse } from 'next/server';
 import { postCreateSchema } from '@/lib/validations/post';
 import { z } from 'zod';
-
 
 export async function POST(req: NextRequest) {
   try {
@@ -18,12 +17,13 @@ export async function POST(req: NextRequest) {
 
     const json = await req.json();
     const body = postCreateSchema.parse(json);
-    const { title, content } = body;
+    const { title, content, published } = body;
 
     const post = await db.post.create({
       data: {
         title,
         content,
+        published,
         authorId: user.id,
       },
       select: {

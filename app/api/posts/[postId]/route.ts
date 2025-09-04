@@ -1,4 +1,4 @@
-import { db } from '@/lib/db';
+import db from '@/lib/db';
 import { authOption } from '@/lib/auth';
 import { postPatchSchema } from '@/lib/validations/post';
 import { getServerSession } from 'next-auth';
@@ -18,7 +18,7 @@ export async function PATCH(
   try {
     const { params } = routeContextSchema.parse(context);
 
-    if (!await verifyCurrentUserHasAccessToPost(params.postId)) {
+    if (!(await verifyCurrentUserHasAccessToPost(params.postId))) {
       return NextResponse.json(null, { status: 403 });
     }
 
@@ -32,6 +32,7 @@ export async function PATCH(
       data: {
         title: body.title,
         content: body.content,
+        published: body.published,
       },
     });
     return NextResponse.json(null, { status: 200 });
@@ -51,7 +52,7 @@ export async function DELETE(
   try {
     const { params } = routeContextSchema.parse(context);
 
-    if (!await verifyCurrentUserHasAccessToPost(params.postId)) {
+    if (!(await verifyCurrentUserHasAccessToPost(params.postId))) {
       return NextResponse.json(null, { status: 403 });
     }
 

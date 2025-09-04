@@ -91,6 +91,7 @@ export default function Editor({ post, isNewPost }: EditorProps) {
         body: JSON.stringify({
           title: data.title,
           content: blocks,
+          published: true,
         }),
       });
     } else {
@@ -103,6 +104,7 @@ export default function Editor({ post, isNewPost }: EditorProps) {
         body: JSON.stringify({
           title: data.title,
           content: blocks,
+          published: true,
         }),
       });
     }
